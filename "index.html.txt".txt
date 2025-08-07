@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Spa Experience - The Daily Makeover</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ocean-600: #003e51;
+            --ocean-700: #002a36;
+            --gold-600: #b8955f;
+            --gold-700: #9a7d4f;
+            --sage-500: #43797b;
+            --cream: #faf8f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, var(--cream) 0%, #f9f9f9 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 62, 81, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--ocean-600);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'EB Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .form-container {
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--ocean-600);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .required {
+            color: var(--gold-600);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="time"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--gold-600);
+            box-shadow: 0 0 0 3px rgba(184, 149, 95, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            min-width: 120px;
+        }
+
+        .radio-option:hover {
+            border-color: var(--gold-600);
+            background: rgba(184, 149, 95, 0.05);
+        }
+
+        .radio-option input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .radio-option.selected {
+            border-color: var(--gold-600);
+            background: rgba(184, 149, 95, 0.1);
+            color: var(--ocean-600);
+            font-weight: 500;
+        }
+
+        .checkbox-group {
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .checkbox-option:hover {
+            border-color: var(--sage-500);
+            background: rgba(67, 121, 123, 0.05);
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            transform: scale(1.2);
+        }
+
+        .checkbox-option.checked {
+            border-color: var(--sage-500);
+            background: rgba(67, 121, 123, 0.1);
+            color: var(--ocean-600);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--gold-600);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--gold-700);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(184, 149, 95, 0.3);
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .footer-note a {
+            color: var(--gold-600);
+            text-decoration: none;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            display: none;
+            background: #f0fdf4;
+            border: 2px solid #bbf7d0;
+            color: #15803d;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .privacy-section {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .privacy-section h3 {
+            color: var(--ocean-600);
+            font-family: 'EB Garamond', serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .privacy-section ul {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+            color: #4b5563;
+        }
+
+        .privacy-section li {
+            margin-bottom: 0.25rem;
+        }
+
+        .consent-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .consent-checkbox:hover {
+            border-color: var(--gold-600);
+            background: rgba(184, 149, 95, 0.05);
+        }
+
+        .consent-checkbox.checked {
+            border-color: var(--gold-600);
+            background: rgba(184, 149, 95, 0.1);
+        }
+
+        .consent-checkbox input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            transform: scale(1.2);
+            margin-top: 0.125rem;
+        }
+
+        .consent-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #374151;
+        }
+
+        .consent-text strong {
+            color: var(--ocean-600);
+        }
+
+        .submit-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn:disabled:hover {
+            background: #9ca3af;
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Guest Spa Services</h1>
+            <p>Seascape Beach Resort - In-Room Spa Booking</p>
+        </div>
+
+        <div class="form-container">
+            <div class="success-message" id="successMessage">
+                Thank you! Your booking request has been sent. We'll contact you within 24 hours to confirm your appointment.
+            </div>
+
+            <form id="bookingForm" action="#" method="POST">
+                <!-- Personal Information -->
+                <div class="form-group">
+                    <label for="name">Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="room">Room Number <span class="required">*</span></label>
+                        <input type="text" id="room" name="room" placeholder="e.g., 205" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkout">Check-out Date</label>
+                        <input type="date" id="checkout" name="checkout">
+                    </div>
+                </div>
+
+                <!-- Referral Information -->
+                <div class="form-group">
+                    <label for="referred-by">Referred By</label>
+                    <input type="text" id="referred-by" name="referred-by" placeholder="Staff member, friend, or how they heard about us">
+                </div>
+
+                <!-- Privacy & Compliance Section -->
+                <div class="privacy-section">
+                    <h3>Privacy & Data Protection</h3>
+                    <p><strong>How we handle your information:</strong></p>
+                    <ul>
+                        <li>Your booking details are sent directly to The Daily Makeover spa team</li>
+                        <li>We use your information only to provide and confirm your spa services</li>
+                        <li>Your data is not stored on this website or shared with third parties</li>
+                        <li>We follow industry-standard security practices to protect your privacy</li>
+                        <li>You can request deletion of your information at any time</li>
+                    </ul>
+                    <p><strong>Contact us:</strong> For privacy questions, email <a href="mailto:support@thedailymakeover.com">support@thedailymakeover.com</a> or call <a href="tel:8312519001">(831) 251-9001</a></p>
+                </div>
+
+                <!-- Consent Checkbox -->
+                <div class="consent-checkbox" onclick="toggleConsent()">
+                    <input type="checkbox" id="privacy-consent" name="privacy-consent" required>
+                    <div class="consent-text">
+                        <strong>I consent to The Daily Makeover collecting and using my information</strong> to provide spa services, send booking confirmations, and communicate about my appointment. I understand my data will not be shared with third parties and I can request its deletion at any time. <span class="required">*</span>
+                    </div>
+                </div>
+
+                <!-- Service Selection -->
+                <div class="form-group">
+                    <label>Select Spa Service <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="massage" name="service" value="In-Room Massage" required>
+                            <label for="massage">In-Room Massage</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="facial" name="service" value="In-Room Facial" required>
+                            <label for="facial">In-Room Facial</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="couples" name="service" value="Couples Massage Package" required>
+                            <label for="couples">Couples Massage</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="group" name="service" value="Group Getaway Weekend Package" required>
+                            <label for="group">Group Getaway Weekend</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date and Time -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Preferred Date <span class="required">*</span></label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Preferred Time <span class="required">*</span></label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+                </div>
+
+                <!-- Therapist Preference -->
+                <div class="form-group">
+                    <label>Therapist Preference</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="no-preference" name="therapist" value="no-preference" checked>
+                            <label for="no-preference">No Preference</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="female" name="therapist" value="female">
+                            <label for="female">Female</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="male" name="therapist" value="male">
+                            <label for="male">Male</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group/Couples Package -->
+                <div class="form-group">
+                    <label>Resort Guest Packages</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="group-package" name="group-package" value="yes">
+                            <label for="group-package">
+                                <strong>Yes, guest is interested in group or couples packages!</strong>
+                                <br><small style="color: #6b7280;">Resort guests save up to 20% on group bookings</small>
+                            </label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="repeat-guest" name="repeat-guest" value="yes">
+                            <label for="repeat-guest">
+                                <strong>Returning guest - previous spa services</strong>
+                                <br><small style="color: #6b7280;">VIP treatment for repeat guests</small>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Notes -->
+                <div class="form-group">
+                    <label for="notes">Staff Notes & Special Requests</label>
+                    <textarea id="notes" name="notes" rows="4" placeholder="Room setup preferences, guest allergies, special occasions, accessibility needs, or other important notes..."></textarea>
+                </div>
+
+                <!-- Staff Information -->
+
+                <button type="submit" class="submit-btn">Send Booking Request</button>
+
+                <div class="footer-note">
+                    Spa team will contact guest within 2 hours to confirm appointment.<br>
+                    Staff questions? Call spa direct at <a href="tel:8312519001">(831) 251-9001</a>
+                    <small style="margin-top: 0.5rem; display: block; color: #9ca3af;">
+                        🔒 Your privacy is protected. Data handled in compliance with privacy regulations.
+                    </small>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Form submission handling
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            // Convert FormData to regular object
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    // Handle multiple values (like checkboxes)
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Create email content
+            const subject = `Spa Booking Request - ${data.service || 'Service'} - ${data.name}`;
+            const body = `
+NEW SEASCAPE RESORT GUEST SPA BOOKING:
+
+GUEST INFORMATION:
+Name: ${data.name}
+Room Number: ${data.room || 'Not provided'}
+Room Number: ${data.room || 'Not provided'}
+Email: ${data.email}
+Phone: ${data.phone}
+Check-out Date: ${data.checkout || 'Not provided'}
+Referred By: ${data['referred-by'] || 'Not provided'}
+Check-out Date: ${data.checkout || 'Not provided'}
+
+SERVICE DETAILS:
+Service: ${data.service}
+Preferred Date: ${data.date}
+Preferred Time: ${data.time}
+Therapist Preference: ${data.therapist}
+
+RESORT GUEST PACKAGES:
+Group/Couples Interest: ${data['group-package'] ? 'YES - Guest interested in group/couples packages' : 'No'}
+Returning Guest: ${data['repeat-guest'] ? 'YES - VIP returning guest' : 'No'}
+Returning Guest: ${data['repeat-guest'] ? 'YES - VIP returning guest' : 'No'}
+
+STAFF NOTES & REQUESTS:
+${data.notes || 'None'}
+
+PRIVACY COMPLIANCE:
+Guest Consent: ${data['privacy-consent'] ? 'YES - Guest has consented to data collection and use' : 'NO CONSENT GIVEN'}
+Data Protection: Guest information handled per The Daily Makeover privacy policy
+
+BOOKING DETAILS:
+Booked by Staff: ${data['staff-name'] || 'Not provided'}
+Booking Time: ${data['booking-time'] || 'Not provided'}
+
+ACTION REQUIRED: Contact guest within 2 hours to confirm in-room spa appointment.
+
+---
+Sent from The Daily Makeover Spa Booking System - Seascape Resort Partnership
+Privacy Compliant Booking - Guest consent verified
+            `;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:support@thedailymakeover.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('successMessage').innerHTML = 'Guest booking submitted successfully! Spa team will contact the guest within 2 hours.';
+            document.getElementById('bookingForm').style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        });
+
+        // Radio button styling
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Remove selected class from all options in this group
+                document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+                    r.closest('.radio-option').classList.remove('selected');
+                });
+                // Add selected class to chosen option
+                this.closest('.radio-option').classList.add('selected');
+            });
+        });
+
+        // Checkbox styling
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    this.closest('.checkbox-option').classList.add('checked');
+                } else {
+                    this.closest('.checkbox-option').classList.remove('checked');
+                }
+            });
+        });
+
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+        // Initialize radio button states
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                radio.closest('.radio-option').classList.add('selected');
+            });
+            
+            // Initialize submit button state
+            updateSubmitButton();
+        });
+
+        // Consent checkbox functionality
+        function toggleConsent() {
+            const checkbox = document.getElementById('privacy-consent');
+            const container = checkbox.closest('.consent-checkbox');
+            
+            checkbox.checked = !checkbox.checked;
+            
+            if (checkbox.checked) {
+                container.classList.add('checked');
+            } else {
+                container.classList.remove('checked');
+            }
+            
+            updateSubmitButton();
+        }
+
+        // Update submit button based on consent
+        function updateSubmitButton() {
+            const consentCheckbox = document.getElementById('privacy-consent');
+            const submitButton = document.querySelector('.submit-btn');
+            
+            if (consentCheckbox.checked) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Booking Request';
+            } else {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Please Accept Privacy Terms';
+            }
+        }
+
+        // Listen for consent changes
+        document.getElementById('privacy-consent').addEventListener('change', updateSubmitButton);
+    </script>
+</body>
+</html>
